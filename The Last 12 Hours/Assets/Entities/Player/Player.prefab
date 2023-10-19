@@ -56,6 +56,20 @@ MonoBehaviour:
   _vision: 0
   Speed: 1
   canMove: 1
+  PlayerControls:
+    Up: 119
+    Down: 115
+    Right: 100
+    Left: 97
+    HotbarFirst: 49
+    HotbarSecond: 50
+    HotbarThird: 51
+    Flashlight: 102
+    Inventory: 9
+    PauseMenu: 27
+    Reload: 114
+    Heal: 113
+    Interact: 101
   Inventory:
     Hotbar:
     - {fileID: 0}
@@ -246,7 +260,7 @@ MonoBehaviour:
   - {x: 0.13925949, y: -0.4798763, z: 0}
   m_ShapePathHash: -1856811995
   m_Mesh: {fileID: 0}
-  m_InstanceId: 42174
+  m_InstanceId: 52878
   m_LocalBounds:
     m_Center: {x: 0.06812896, y: -0.072844446, z: 0}
     m_Extent: {x: 0.15115556, y: 0.40757143, z: 0}
@@ -345,7 +359,7 @@ SpriteRenderer:
   m_SortingLayer: 5
   m_SortingOrder: 3
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.19607843}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -394,7 +408,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8659560362798505370}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
   m_Name: 

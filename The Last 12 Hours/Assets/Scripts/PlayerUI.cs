@@ -2,7 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.Properties;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerUI : MonoBehaviour
 {
@@ -14,8 +17,24 @@ public class PlayerUI : MonoBehaviour
     private GameObject settingsMenu;
     [SerializeField]
     private GameObject pauseMenu;
+
     [SerializeField]
     private GameObject inventoryMenu;
+
+    [Serializable]
+    private class InventoryUI
+    {
+        [SerializeField]
+        private GameObject Inventory;
+        [SerializeField]
+        private GameObject Equipment;
+
+        public Image[] InventorySlots { get { return Inventory.GetComponentsInChildren<Image>(); } }
+        public Image[] EquipmentSlots { get { return Equipment.GetComponentsInChildren<Image>(); } }
+    }
+    [SerializeField]
+    private InventoryUI inventoryUI;
+
     [SerializeField]
     private GameObject heartsUI;
     [SerializeField]
@@ -66,6 +85,8 @@ public class PlayerUI : MonoBehaviour
     // Switches show or not inventory
     public void ShowInventory()
     {
+        UpdateItemsUI();
+
         bool isActive = !inventoryMenu.activeSelf;
         inventoryMenu.SetActive(isActive);
     }
@@ -74,5 +95,17 @@ public class PlayerUI : MonoBehaviour
     public void NextScene()
     {
         GameManager.NextScene();
+    }
+
+    // Updates the inventory items
+    private void UpdateItemsUI()
+    {
+        for (int i = 0; i < Player.Instance.Inventory.Items.Count; i++)
+        {
+            if (Player.Instance.Inventory.Items[i] is Item item && item != null)
+            {
+                inventoryUI.InventorySlots[i].sprite = item.GetComponent<SpriteRenderer>().sprite;
+            }
+        }
     }
 }

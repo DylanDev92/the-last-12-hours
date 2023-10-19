@@ -193,6 +193,8 @@ public class Player : Entity
     // Enables and disables the flashlight depending of the state of this.
     private void TurnFlashLight()
     {
+        if (!Inventory.Items.Any(x => x.Type == ItemType.Flashlight)) return;
+
         PlaySound("Turn-On");
         flashlight.enabled = !flashlight.enabled;
     }

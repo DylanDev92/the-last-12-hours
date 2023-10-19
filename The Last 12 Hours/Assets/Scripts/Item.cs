@@ -18,7 +18,7 @@ public enum ItemType
     Knife,
     Gun
 }
-public class Item : MonoBehaviour
+public class Item : Interactable
 {
     public ItemType Type;
     public bool IsEquipment
@@ -59,5 +59,13 @@ public class Item : MonoBehaviour
     public void Use()
     {
         // Here will be the Use logic of the item.
+    }
+
+    // For picking Item
+    public override void Interact()
+    {
+        Player.Instance.Inventory.AddItems(this);
+
+        this.gameObject.SetActive(false);
     }
 }
