@@ -72,11 +72,14 @@ public class Player : Entity
 
     public void UpdateInput()
     {
+        if (canMove == false) return;
+
         // Interact with objects
         if (Input.GetKeyDown(PlayerControls.Interact))
         {
             Interact();
         }
+
         // Turn on/off the flashlight
         if (Input.GetKeyDown(PlayerControls.Flashlight))
         {
@@ -87,6 +90,18 @@ public class Player : Entity
         if (Input.GetMouseButtonDown(0))
         {
             Fire();
+        }
+
+        // Opens inventory
+        if (Input.GetKeyDown(PlayerControls.Inventory))
+        {
+            PlayerUI.Instance.ShowInventory();
+        }
+
+        // Opens settings
+        if (Input.GetKeyDown(PlayerControls.PauseMenu))
+        {
+            PlayerUI.Instance.ShowPauseMenu();
         }
     }
 
@@ -145,6 +160,7 @@ public class Player : Entity
 
     private void UpdateHand()
     {
+        if (GameManager.Instance.isGamePaused == true) return;
         // Updates the hand rotation/position
         if (GameManager.Instance.MouseProperties is MouseProperties mouseProperties)
         {
@@ -211,10 +227,13 @@ public class Controls
     public KeyCode HotbarFirst = KeyCode.Alpha1;
     public KeyCode HotbarSecond = KeyCode.Alpha2;
     public KeyCode HotbarThird = KeyCode.Alpha3;
-    public KeyCode Inventory = KeyCode.Tab;
 
     // Flashlight
     public KeyCode Flashlight = KeyCode.F;
+
+    // UI
+    public KeyCode Inventory = KeyCode.Tab;
+    public KeyCode PauseMenu = KeyCode.Escape;
 
     // Use
     public KeyCode Reload = KeyCode.R;

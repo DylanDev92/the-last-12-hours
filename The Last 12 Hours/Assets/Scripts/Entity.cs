@@ -15,7 +15,7 @@ public abstract class Entity : Map
     protected float Speed;
 
     [SerializeField]
-    protected bool canMove;
+    public bool canMove;
 
     protected abstract void Attack();
     protected abstract void Walk();

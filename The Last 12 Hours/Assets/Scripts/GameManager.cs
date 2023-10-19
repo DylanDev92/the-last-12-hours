@@ -26,6 +26,9 @@ public class GameManager : MonoBehaviour
 
     public static GameManager Instance { get; private set; }
 
+    [DoNotSerialize]
+    public bool isGamePaused = false;
+
     private void Awake()
     {
         // This is for setting the instance of the singleton
@@ -96,6 +99,12 @@ public class GameManager : MonoBehaviour
         }
 
         camera = GameObject.Find("Camera").GetComponentInChildren<Camera>();
+
+        // Shows the no main-menu ui if it's the first scene
+        bool isMainMenuScene = CurrentScene.buildIndex == 0;
+        PlayerUI.Instance.ShowMainMenu(isMainMenuScene);
+        PlayerUI.Instance.ShowHeartUI(!isMainMenuScene);
+        Player.Instance.canMove = !isMainMenuScene;
     }
 
 
@@ -126,6 +135,13 @@ public class GameManager : MonoBehaviour
         yield return null;
     }
 
+    public void PauseGame(bool pause)
+    {
+        isGamePaused = pause;
+
+        Time.timeScale = isGamePaused ? 0f : 1.0f;
+        AudioListener.pause = pause;
+    }
 }
 
 [Serializable]
