@@ -100,7 +100,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8562656107313677767
 Transform:
   m_ObjectHideFlags: 0
@@ -336,6 +336,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Outline: 1
   InteractSound: {fileID: 106281263267648564}
+  oneInteraction: 0
   firstState: {fileID: 6923781395732328697}
   secondState: {fileID: 5717833346766737605}
   ChangeColliderState: 1
