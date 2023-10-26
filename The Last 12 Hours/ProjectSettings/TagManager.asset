@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Interactable
+  - HP
+  - Equipment
+  - InventorySlot
   layers:
   - Default
   - TransparentFX

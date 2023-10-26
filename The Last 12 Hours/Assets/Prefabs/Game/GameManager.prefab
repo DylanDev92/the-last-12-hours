@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7453634165945811369
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1011636736063760893}
+  - component: {fileID: 8270301433335668291}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1011636736063760893
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7453634165945811369}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 319.3734, y: 159.44208, z: -3.18596}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8270301433335668291
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7453634165945811369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f86b6232d86ac74381d07441af3ad4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  backgroundMusic:
+  - Name: Chapter1
+    Clip: {fileID: 8300000, guid: a68d3ffa4cbcb0e48a8d6cb4942070c5, type: 3}
+    Volume: 0.04
+    Pitch: 0.69
+    Loop: 0
+    Source: {fileID: 0}
+  OutlineInteract:
+    Distance: 1.23
+    Outline: {fileID: 2100000, guid: 82ea68a891e7c26409bab7973a21460d, type: 2}
+    NoOutline: {fileID: 2100000, guid: af55d4c2f48bd314bb74942ec16c7c06, type: 2}
+  ItemSprites:
+    Flashlight: {fileID: 21300000, guid: 90622fe76e2bb36448289a8f430d70d3, type: 3}
+    Knife: {fileID: -65932803, guid: e9e134760786df24092cb6c78dbf220e, type: 3}
+    Gun: {fileID: 842255159, guid: e9e134760786df24092cb6c78dbf220e, type: 3}
+    Axe: {fileID: -1815532347, guid: e9e134760786df24092cb6c78dbf220e, type: 3}
+    Bandage: {fileID: 21300000, guid: 64587ff823121c84695e9810f3e4dd51, type: 3}
+    Ammo: {fileID: 21300000, guid: a427fe83bbea7684488a1723ad40f808, type: 3}
+  Prefabs:
+    RatPrefab: {fileID: 3485666810134907234, guid: 42416ea063d3974448dfb04ba7de1c77, type: 3}
+    BandagePrefab: {fileID: 3017755986511261869, guid: 7bca406473604d44dbf9428baf3d9734, type: 3}
