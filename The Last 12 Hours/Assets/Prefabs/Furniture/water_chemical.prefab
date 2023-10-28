@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4891399406926081365}
   - component: {fileID: 5713399900557820424}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: water_chemical
   m_TagString: Untagged
   m_Icon: {fileID: 0}

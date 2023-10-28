@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7201528936121246529}
   - component: {fileID: 1882904219118484027}
   - component: {fileID: 3143157609756157344}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Chair_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25,13 +25,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3240793363044083295}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 6, y: 8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1882904219118484027
 SpriteRenderer:
