@@ -3,6 +3,8 @@ using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Pathfinding;
+using System.IO;
 
 [System.Serializable]
 public abstract class Entity : MonoBehaviour
@@ -13,6 +15,13 @@ public abstract class Entity : MonoBehaviour
     protected Rigidbody2D rb { get; private set; }
     protected SpriteRenderer sr { get; private set; }
     public Animator ani { get; private set; }
+
+    // A*Pathfinding
+    private AIPath aiPath { get; set; }
+    public AIDestinationSetter destinationSetter { get; private set; }
+    private bool isUsingPathfinding { get; set; }
+    public GameObject AIFollow;
+
 
     [field: SerializeField]
     public int maxHealth { get; protected set; }
@@ -71,7 +80,15 @@ public abstract class Entity : MonoBehaviour
 
     protected virtual void Start()
     {
-
+        // Gets the required A*Pathfinding components, if null use linear movement.
+        aiPath = GetComponent<AIPath>();
+        destinationSetter = GetComponent<AIDestinationSetter>();
+        isUsingPathfinding = (aiPath && destinationSetter);
+        if (isUsingPathfinding)
+        {
+            destinationSetter.target = player.transform;
+            aiPath.maxSpeed = speed;
+        }
     }
 
     protected virtual void Awake()
@@ -93,6 +110,8 @@ public abstract class Entity : MonoBehaviour
         {
             if (isMoving)
             {
+                if (isUsingPathfinding) aiPath.canMove = false;
+
                 rb.velocity = Vector2.zero;
                 ani?.SetBool("isWalk", false);
                 isMoving = false;
@@ -101,7 +120,16 @@ public abstract class Entity : MonoBehaviour
             return;
         }
 
-        rb.velocity = movement * speed;
+        if (isUsingPathfinding)
+        {
+            aiPath.canMove = true;
+        }
+        else
+        {
+            rb.velocity = movement * speed;
+        }
+
+
         ani?.SetBool("isWalk", movement.magnitude > 0);
 
         if (movement.x > 0)
