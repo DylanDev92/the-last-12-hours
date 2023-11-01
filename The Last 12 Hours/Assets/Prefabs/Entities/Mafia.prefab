@@ -157,8 +157,8 @@ MonoBehaviour:
   <speed>k__BackingField: 0.5
   <canMove>k__BackingField: 1
   <attackSpeed>k__BackingField: 5
-  <attackRange>k__BackingField: 3
-  <chaseRange>k__BackingField: 3.5
+  <attackRange>k__BackingField: 4
+  <chaseRange>k__BackingField: 6
 --- !u!70 &2661660490059877642
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
