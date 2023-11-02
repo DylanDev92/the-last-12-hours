@@ -19,6 +19,8 @@ public class Mafia : Enemy
         // 170 - 190
         // 350 - 10
         //Debug.Log(GetAngle(player.position, this.position));
+
+        //Debug.Log("distance: " + Vector2.Distance(Player.Instance.position, this.position));
     }
 
     //public override int attack => 0; // testing purposes

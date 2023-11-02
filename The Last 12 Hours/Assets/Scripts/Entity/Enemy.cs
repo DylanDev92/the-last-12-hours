@@ -21,9 +21,9 @@ public class Enemy : Entity
 
     public override int attack => 1;
 
-    public bool isPlayerInVision => Vector2.Distance(Player.Instance.position, this.rb.position) <= visionDistance;
-    public bool isPlayerInChaseRange => Vector2.Distance(Player.Instance.position, this.rb.position) <= chaseRange;
-    public bool isPlayerInAttackRange => Vector2.Distance(Player.Instance.position, this.rb.position) <= attackRange;
+    public bool isPlayerInVision => Vector2.Distance(Player.Instance.position, this.position) <= visionDistance;
+    public bool isPlayerInChaseRange => Vector2.Distance(Player.Instance.position, this.position) <= chaseRange;
+    public bool isPlayerInAttackRange => Vector2.Distance(Player.Instance.position, this.position) <= attackRange;
     public bool isAttackCooldown => _nextAttackTime > Time.time;
 
     protected override void Start()
@@ -120,8 +120,9 @@ public class Enemy : Entity
             }
             else if (isPlayerInChaseRange)
             {
-                Vector2 movement = (player.position - rb.position).normalized;
-                ApplyMovement(movement);
+                //Vector2 movement = (player.position - rb.position).normalized;
+                //ApplyMovement(movement);
+                ApplyMovement();
             }
             else // stop chasing
             {

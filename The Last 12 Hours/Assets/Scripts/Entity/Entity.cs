@@ -108,15 +108,20 @@ public abstract class Entity : MonoBehaviour
 
     protected void StopMovement() => ApplyMovement(Vector2.zero);
 
-    protected void ApplyMovement(Vector2 movement)
+    protected void ApplyMovement(Vector2? movement = null)
     {
+        if (!isUsingPathfinding && movement == null)
+            throw new ArgumentNullException(nameof(movement), "movement vector cannot be null if pathfinding is disabled");
+
         if (!canMove)
         {
             if (isMoving)
             {
-                if (isUsingPathfinding) aiPath.canMove = false;
+                if (isUsingPathfinding)
+                    aiPath.canMove = false;
+                else
+                    rb.velocity = Vector2.zero;
 
-                rb.velocity = Vector2.zero;
                 ani?.SetBool("isWalk", false);
                 isMoving = false;
                 OnStopMoving?.Invoke();
@@ -124,33 +129,42 @@ public abstract class Entity : MonoBehaviour
             return;
         }
 
+        Vector2 movement2;
+
         if (isUsingPathfinding)
         {
-            aiPath.canMove = true;
+            // stop moving
+            if (movement == Vector2.zero)
+            {
+                aiPath.canMove = false;
+                movement2 = Vector2.zero;
+            }
+            else
+            {
+                aiPath.canMove = true;
+                movement2 = aiPath.velocity;
+            }
         }
         else
         {
-            rb.velocity = movement * speed;
+            movement2 = (Vector2)movement;
+            rb.velocity = movement2 * speed;
         }
 
 
-        ani?.SetBool("isWalk", movement.magnitude > 0);
+        ani?.SetBool("isWalk", movement2.magnitude > 0);
 
-        if (movement.x > 0)
-        {
+        if (movement2.x > 0)
             sr.flipX = false;
-        }
-        else if (movement.x < 0)
-        {
+        else if (movement2.x < 0)
             sr.flipX = true;
-        }
 
-        if (!isMoving && movement.magnitude > 0)
+        if (!isMoving && movement2.magnitude > 0)
         {
             isMoving = true;
             OnStartMoving?.Invoke();
         }
-        else if (isMoving && movement.magnitude <= 0)
+        else if (isMoving && movement2.magnitude <= 0)
         {
             isMoving = false;
             OnStopMoving?.Invoke();
