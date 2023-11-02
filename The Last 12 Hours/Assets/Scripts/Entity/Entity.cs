@@ -44,7 +44,11 @@ public abstract class Entity : MonoBehaviour
     [field: SerializeField]
     public bool canMove { get; set; }
     public bool isMoving { get; private set; }
-    public Vector2 position => this.rb.position;
+    public Vector2 position
+    {
+        get => this.transform.position;
+        set => this.transform.position = value;
+    }
 
     public event Action OnStartMoving;
     public event Action OnStopMoving;

@@ -7,6 +7,8 @@ using UnityEngine;
 public class Enemy : Entity
 {
     private float _nextAttackTime;
+    private Vector2 _spawnLocation;
+
 
     [field: SerializeField]
     public float attackSpeed { get; protected set; }
@@ -27,6 +29,8 @@ public class Enemy : Entity
     protected override void Start()
     {
         health = maxHealth;
+        _spawnLocation = this.position;
+
         this.OnDeath += Enemy_OnDeath;
 
         base.Start();
@@ -42,7 +46,23 @@ public class Enemy : Entity
 
         manager.DelayCallback(TimeSpan.FromSeconds(1), () =>
         {
-            Destroy(this.gameObject);
+            // despawn the object
+            this.gameObject.SetActive(false);
+
+            manager.DelayCallback(TimeSpan.FromSeconds(10), () =>
+            {
+                //move obj
+                this.position = _spawnLocation;
+                
+                //restore health
+                this.health = maxHealth;
+
+                //set active true
+                this.gameObject.SetActive(true);
+
+            });
+
+            //Destroy(this.gameObject);
         });
     }
 
