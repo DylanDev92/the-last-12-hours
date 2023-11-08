@@ -8,6 +8,7 @@ TagManager:
   - HP
   - Equipment
   - InventorySlot
+  - Bullet
   layers:
   - Default
   - TransparentFX
