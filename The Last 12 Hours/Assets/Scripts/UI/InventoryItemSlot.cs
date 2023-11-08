@@ -57,10 +57,13 @@ public class InventoryItemSlot : MonoBehaviour, IPointerDownHandler
         if (this.itemType == ItemType.Undefined)
             return;
 
-        var item = player.inventory.Get(this.itemType);
-        if (item?.Use() == true)
+        if(player.inventory.ContainsType(this.itemType))
         {
-            player.inventory.Remove(this.itemType, 1);
+            var item = player.inventory.Get(this.itemType);
+            if (item.Use() == true)
+            {
+                player.inventory.Remove(this.itemType, 1);
+            } 
         }
     }
 }

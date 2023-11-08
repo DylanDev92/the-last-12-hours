@@ -18,6 +18,7 @@ public class Inventory : IEnumerable<Item>
     IEnumerator IEnumerable.GetEnumerator() => _items.GetEnumerator();
     public IEnumerator<Item> GetEnumerator() => _items.GetEnumerator();
     public Item Get(ItemType type) => this.FirstOrDefault(item => item.type == type);
+    public bool ContainsType(ItemType type) => Get(type)?.type != null;
 
     public event Action<Item> OnAddItem;
     public event Action<Item> OnRemoveItem;
@@ -33,11 +34,11 @@ public class Inventory : IEnumerable<Item>
     // Add items to the list
     public void Add(Item item)
     {
-        var existing = Get(item.type);
         item.amount = Math.Max(1, item.amount); // sanity helper
 
-        if (existing?.type != null)
+        if (ContainsType(item.type))
         {
+            var existing = Get(item.type);
             existing.amount += item.amount;
             OnUpdateItem?.Invoke(existing);
         }
@@ -53,9 +54,9 @@ public class Inventory : IEnumerable<Item>
 
     public void Remove(ItemType type, int amount = 1)
     {
+        if (!ContainsType(type)) return;
+
         var existing = Get(type);
-        if (existing?.type == null)
-            return;
 
         if (existing.amount > amount)
         {

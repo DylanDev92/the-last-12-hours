@@ -116,27 +116,30 @@ public class Item : MonoBehaviour
                 }
             case ItemType.Gun:
                 {
-                    var ammo = player.inventory.Get(ItemType.Ammo);
-                    if (ammo?.amount > 0)
+                    if (player.inventory.ContainsType(ItemType.Ammo))
                     {
-                        player.ani?.SetTrigger("triggerShoot");
+                        var ammo = player.inventory.Get(ItemType.Ammo);
+                        if (ammo.amount > 0)
+                        {
+                            player.ani?.SetTrigger("triggerShoot");
 
-                        var mousePositionWorld = (Vector2)GameManager.Instance.camera.ScreenToWorldPoint(Input.mousePosition);
-                        var direction = (mousePositionWorld - player.position).normalized;
-                        var hit = Physics2D
-                            .RaycastAll(player.position, direction, 3f)
-                            .Select(o => o.collider.GetComponent<Enemy>())
-                            .Where(e => e != null)
-                            .OrderBy(e => Vector2.Distance(player.position, e.position))
-                            .ToList();
+                            var mousePositionWorld = (Vector2)GameManager.Instance.camera.ScreenToWorldPoint(Input.mousePosition);
+                            var direction = (mousePositionWorld - player.position).normalized;
+                            var hit = Physics2D
+                                .RaycastAll(player.position, direction, 3f)
+                                .Select(o => o.collider.GetComponent<Enemy>())
+                                .Where(e => e != null)
+                                .OrderBy(e => Vector2.Distance(player.position, e.position))
+                                .ToList();
 
-                        // maybe add piercing to the gun? idk
-                        Debug.Log($"{hit.Count} potential enemies hit, but only hitting the first.");
-                        var enemy = hit.FirstOrDefault();
-                        enemy?.ReceiveAttack(player, player.attack);
+                            // maybe add piercing to the gun? idk
+                            Debug.Log($"{hit.Count} potential enemies hit, but only hitting the first.");
+                            var enemy = hit.FirstOrDefault();
+                            enemy?.ReceiveAttack(player, player.attack);
 
-                        player.inventory.Remove(ammo.type, 1);
-                        Debug.Log($"Gun shot, remaining ammo: {ammo.amount}");
+                            player.inventory.Remove(ammo.type, 1);
+                            Debug.Log($"Gun shot, remaining ammo: {ammo.amount}");
+                        }
                     }
                     break;
                 }

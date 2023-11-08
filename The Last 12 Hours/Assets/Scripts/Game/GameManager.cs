@@ -117,7 +117,7 @@ public class GameManager : MonoBehaviour
             var mapItems = GameObject.FindObjectsByType<Item>(FindObjectsSortMode.None); //list if items on scene/map
 
             // we use ?.type!= null because destroyed unity objects despite not "actually" being null are treated as equal to null due to Unity's implementation (operator override)
-            foreach (var item in mapItems.Where(i => i.isEquipment && Player.Instance.inventory.Get(i.type)?.type != null))
+            foreach (var item in mapItems.Where(i => i.isEquipment && Player.Instance.inventory.ContainsType(i.type)))
                 Destroy(item.gameObject);
 
             SceneManager.LoadScene("HealthUI", LoadSceneMode.Additive);
