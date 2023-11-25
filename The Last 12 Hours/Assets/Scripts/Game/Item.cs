@@ -13,7 +13,8 @@ public enum ItemType
     Flashlight,
     Axe,
     Knife,
-    Gun
+    Gun,
+    key
 }
 public class Item : MonoBehaviour
 {
