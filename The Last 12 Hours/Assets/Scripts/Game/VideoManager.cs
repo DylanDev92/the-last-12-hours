@@ -17,5 +17,7 @@ public class VideoManager : MonoBehaviour
         videoPlayer.url = System.IO.Path.Combine(Application.streamingAssetsPath, videoName);
 
         videoPlayer.Play();
+
+        videoPlayer.targetCamera = Camera.main;
     }
 }

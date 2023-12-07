@@ -34,6 +34,8 @@ public class Player : Entity
     private Sound[] sounds;
 
     public GameObject hand { get; private set; }
+    public SpriteRenderer handSprite { get; private set; }
+
     public override int attack => 1;
     public ItemType activeWeapon { get; private set; } = ItemType.Undefined;
     public int level { get; private set; }
@@ -57,10 +59,9 @@ public class Player : Entity
     {
         activeWeapon = type;
 
-        var sr = player.hand.GetComponentInChildren<SpriteRenderer>();
         if (type == ItemType.Undefined)
         {
-            sr.enabled = false;
+            handSprite.enabled = false;
         }
         else
         {            
@@ -68,8 +69,8 @@ public class Player : Entity
             if (type != ItemType.Flashlight)
                 flashlight = false;
 
-            sr.sprite = Item.GetSprite(type);
-            sr.enabled = true;
+            handSprite.sprite = Item.GetSprite(type);
+            handSprite.enabled = true;
         }
 
         OnChangeWeapon?.Invoke();
@@ -97,7 +98,11 @@ public class Player : Entity
         }
 
         Instance = this;
+
         hand = transform.Find("Hand").gameObject;
+        handSprite = player.hand.GetComponentInChildren<SpriteRenderer>();
+
+        Debug.Log(handSprite.name);
 
         OnStartMoving += () => PlaySound("Walking");
         OnStopMoving += () => StopSound("Walking");
@@ -133,6 +138,11 @@ public class Player : Entity
             InventoryUI.Enabled = !InventoryUI.Enabled;
         }
 
+        if (Input.GetKeyUp(Controls.Pause))
+        {
+            GameManager.IsPaused = !GameManager.IsPaused;
+        }
+
         // Interact with objects
         if (Input.GetKeyDown(Controls.Interact))
         {
@@ -165,6 +175,8 @@ public class Player : Entity
         if (GameManager.Instance.MouseProperties is MouseProperties mouseProperties)
         {
             hand.transform.rotation = Quaternion.AngleAxis(mouseProperties.Angle, Vector3.forward);
+
+            handSprite.flipY = !(mouseProperties.Angle <= 90 && mouseProperties.Angle >= -90);
         }
     }
 
@@ -217,6 +229,7 @@ public class PlayerControls
     public KeyCode HotbarSecond = KeyCode.Alpha2;
     public KeyCode HotbarThird = KeyCode.Alpha3;
     public KeyCode Inventory = KeyCode.Tab;
+    public KeyCode Pause = KeyCode.Escape;
 
     // Flashlight
     public KeyCode Flashlight = KeyCode.F;

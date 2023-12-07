@@ -9,6 +9,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+
     public static GameManager Instance { get; private set; }
 
     private List<(float, Action)> _callbacks = new List<(float, Action)>();
@@ -28,6 +29,32 @@ public class GameManager : MonoBehaviour
     public ItemSprites ItemSprites;
     public Prefabs Prefabs;
     public new Camera camera { get; private set; }
+
+    // Pause section 
+    private static bool isPaused;
+    public static bool IsPaused
+    {
+        get { return isPaused; }
+        set
+        {
+            if (value != isPaused)
+            {
+                isPaused = value;
+
+                if (value)
+                {
+                    LoadPauseMenu();
+                    Time.timeScale = 0;
+                }
+                else
+                {
+                    ClosePauseMenu();
+                    Time.timeScale = 1f;
+                }
+            }
+        }
+    }
+
 
     public void DelayCallback(TimeSpan time, Action action)
     {
@@ -110,6 +137,8 @@ public class GameManager : MonoBehaviour
         // for chapter scenes, load the ui scenes
         if (scene.name.StartsWith("Chapter", StringComparison.OrdinalIgnoreCase))
         {
+            Time.timeScale = 1.0f;
+
             int level = int.Parse(scene.name.Substring(7));
             Player.Instance.EnterLevel(level);
 
@@ -126,7 +155,10 @@ public class GameManager : MonoBehaviour
     }
 
     public static void LoadMainMenuScene() => SceneManager.LoadScene("StartMenu");
-    public static void LoadSettingsScene() => SceneManager.LoadScene("SettingsMenu");
+    public static void LoadSettingsMenu() => SceneManager.LoadScene("SettingsMenu", LoadSceneMode.Additive);
+    public static void CloseSettingsMenu() => SceneManager.UnloadSceneAsync("SettingsMenu");
+    public static void LoadPauseMenu() => SceneManager.LoadScene("PauseMenu", LoadSceneMode.Additive);
+    public static void ClosePauseMenu() { try { SceneManager.UnloadSceneAsync("PauseMenu"); isPaused = false; } catch (Exception e) { } finally { Time.timeScale = 1f; } }
     public static void LoadLevelScene(int level)
     {
         if (Player.Instance != null)
