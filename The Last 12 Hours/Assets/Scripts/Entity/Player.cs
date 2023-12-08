@@ -154,13 +154,10 @@ public class Player : Entity
         }
 
         // Turn on/off the flashlight
-        if (Input.GetKeyDown(Controls.Flashlight))
+        if (Input.GetKeyDown(Controls.Flashlight) && this.activeWeapon == ItemType.Flashlight)
         {
-            if (this.activeWeapon != ItemType.Undefined)
-            {
-                var weapon = this.inventory.Get(this.activeWeapon);
-                weapon?.UseWeaponAttack();
-            }
+            this.inventory.Get(this.activeWeapon)?.UseWeaponAttack();
+            PlaySound("Turn-On");
         }
     }
 

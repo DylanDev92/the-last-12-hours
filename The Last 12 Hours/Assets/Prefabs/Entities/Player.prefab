@@ -99,7 +99,7 @@ MonoBehaviour:
   - Name: Turn-On
     Clip: {fileID: 8300000, guid: ce45308c0fb9ffb40ab2bc7579ccdcfc, type: 3}
     Volume: 0.15
-    Pitch: 1.03
+    Pitch: 2.48
     Loop: 0
     Source: {fileID: 0}
   - Name: Pick-Up
@@ -261,7 +261,7 @@ MonoBehaviour:
   - {x: 0.13925949, y: -0.4798763, z: 0}
   m_ShapePathHash: -1856811995
   m_Mesh: {fileID: 0}
-  m_InstanceId: 164616
+  m_InstanceId: 176220
   m_LocalBounds:
     m_Center: {x: 0.06812896, y: -0.072844446, z: 0}
     m_Extent: {x: 0.15115556, y: 0.40757143, z: 0}
