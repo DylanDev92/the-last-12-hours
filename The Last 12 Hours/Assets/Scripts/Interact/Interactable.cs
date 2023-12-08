@@ -26,7 +26,7 @@ public abstract class Interactable : MonoBehaviour
     public virtual void Interact()
     {
         isInteracting = !isInteracting;
-        //interactSound?.Play();
+        if (interactSound) interactSound.Play();
         OnInteractingChange?.Invoke();
     }
 

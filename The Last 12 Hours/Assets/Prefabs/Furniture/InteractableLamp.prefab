@@ -95,9 +95,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <showOutline>k__BackingField: 1
-  <interactSound>k__BackingField: {fileID: 0}
+  <interactSound>k__BackingField: {fileID: 6319789929912879122}
   firstState: {fileID: 7752835692580986913}
   secondState: {fileID: 9013103502419897031}
+  ChangeCollision: 0
 --- !u!212 &1891236955222991984
 SpriteRenderer:
   m_ObjectHideFlags: 0

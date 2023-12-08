@@ -65,6 +65,7 @@ MonoBehaviour:
     HotbarSecond: 50
     HotbarThird: 51
     Inventory: 9
+    Pause: 27
     Flashlight: 102
     Reload: 114
     Heal: 113
@@ -99,6 +100,12 @@ MonoBehaviour:
     Clip: {fileID: 8300000, guid: ce45308c0fb9ffb40ab2bc7579ccdcfc, type: 3}
     Volume: 0.15
     Pitch: 1.03
+    Loop: 0
+    Source: {fileID: 0}
+  - Name: Pick-Up
+    Clip: {fileID: 8300000, guid: afa4adfa3120d044197d220b0c7ffbf3, type: 3}
+    Volume: 0.04
+    Pitch: 0.82
     Loop: 0
     Source: {fileID: 0}
 --- !u!212 &2289830049086549695
@@ -254,7 +261,7 @@ MonoBehaviour:
   - {x: 0.13925949, y: -0.4798763, z: 0}
   m_ShapePathHash: -1856811995
   m_Mesh: {fileID: 0}
-  m_InstanceId: 60150
+  m_InstanceId: 164616
   m_LocalBounds:
     m_Center: {x: 0.06812896, y: -0.072844446, z: 0}
     m_Extent: {x: 0.15115556, y: 0.40757143, z: 0}
@@ -352,7 +359,7 @@ SpriteRenderer:
   m_SortingLayerID: -830287597
   m_SortingLayer: 5
   m_SortingOrder: 3
-  m_Sprite: {fileID: 160200797, guid: e9e134760786df24092cb6c78dbf220e, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -360,7 +367,7 @@ SpriteRenderer:
   m_Size: {x: 0.09375, y: 0.21875}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &7996186335257926369

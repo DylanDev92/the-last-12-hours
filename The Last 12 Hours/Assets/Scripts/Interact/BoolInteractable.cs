@@ -10,6 +10,8 @@ public class BoolInteraction : Interactable
     [SerializeField]
     private GameObject secondState;
 
+    public bool ChangeCollision;
+
     void Start()
     {
         this.OnInteractingChange += BoolInteraction_OnInteractingChange;
@@ -18,7 +20,7 @@ public class BoolInteraction : Interactable
     private void BoolInteraction_OnInteractingChange()
     {
         var collider = this.GetComponent<BoxCollider2D>();
-        if (collider != null)
+        if (collider != null && ChangeCollision)
             collider.isTrigger = !collider.isTrigger;
 
         firstState.SetActive(!this.isInteracting);

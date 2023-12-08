@@ -108,6 +108,8 @@ public class Player : Entity
         OnStopMoving += () => StopSound("Walking");
         OnDeath += () => GameManager.LoadGameOverScene();
 
+        ItemInteractable.OnPickUp += () => PlaySound("Pick-Up");
+
         ResetInfo();
 
         Sound.InitializeSounds(gameObject, sounds);
@@ -202,7 +204,7 @@ public class Player : Entity
     private void PlaySound(string soundName)
     {
         var sound = sounds.FirstOrDefault(x => x.Name == soundName);
-        if (sound?.Source?.isPlaying == true)
+        if (sound?.Source?.isPlaying == false)
             sound.Source.Play();
     }
 
@@ -210,7 +212,7 @@ public class Player : Entity
     private void StopSound(string soundName)
     {
         var sound = sounds.FirstOrDefault(x => x.Name == soundName);
-        if (sound?.Source?.isPlaying == false)
+        if (sound?.Source?.isPlaying == true)
             sound.Source.Stop();
     }
 }

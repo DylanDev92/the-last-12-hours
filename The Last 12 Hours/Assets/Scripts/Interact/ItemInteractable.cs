@@ -1,9 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ItemInteractable : Interactable
 {
+    public static event Action OnPickUp;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +25,7 @@ public class ItemInteractable : Interactable
             }
 
             item.Pickup();
+            OnPickUp?.Invoke();
         }
     }
 

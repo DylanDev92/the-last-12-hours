@@ -60,7 +60,7 @@ MonoBehaviour:
     Knife: {fileID: -65932803, guid: e9e134760786df24092cb6c78dbf220e, type: 3}
     Gun: {fileID: 842255159, guid: e9e134760786df24092cb6c78dbf220e, type: 3}
     Axe: {fileID: -1815532347, guid: e9e134760786df24092cb6c78dbf220e, type: 3}
-    Bandage: {fileID: 21300000, guid: 64587ff823121c84695e9810f3e4dd51, type: 3}
+    Bandage: {fileID: 1446113287, guid: 1c0a8ea271a50a0489aa2a825ec0f675, type: 3}
     Ammo: {fileID: 21300000, guid: a427fe83bbea7684488a1723ad40f808, type: 3}
   Prefabs:
     RatPrefab: {fileID: 3485666810134907234, guid: 42416ea063d3974448dfb04ba7de1c77, type: 3}
