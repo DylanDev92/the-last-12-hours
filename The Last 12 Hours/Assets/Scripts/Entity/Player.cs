@@ -109,6 +109,7 @@ public class Player : Entity
         OnDeath += () => GameManager.LoadGameOverScene();
 
         ItemInteractable.OnPickUp += () => PlaySound("Pick-Up");
+        Item.OnShoot += () => PlaySound("Shoot");
 
         ResetInfo();
 
@@ -158,6 +159,10 @@ public class Player : Entity
         {
             this.inventory.Get(this.activeWeapon)?.UseWeaponAttack();
             PlaySound("Turn-On");
+        }
+        if (Input.GetMouseButtonDown(0) && this.activeWeapon != ItemType.Flashlight)
+        {
+            this.inventory.Get(this.activeWeapon)?.UseWeaponAttack();
         }
     }
 

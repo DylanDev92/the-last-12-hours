@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,9 @@ public class Item : MonoBehaviour
     public static bool IsEquipment(ItemType type) => EQUIPMENT_TYPES.Contains(type);
     public static bool IsConsumable(ItemType type) => CONSUMABLES_TYPES.Contains(type);
     public static bool IsAutoConsume(ItemType type) => AUTO_CONSUME_TYPES.Contains(type);
+
+    public static event Action OnShoot;
+
     public static Sprite GetSprite(ItemType type)
     {
         var manager = GameManager.Instance;
@@ -139,6 +143,8 @@ public class Item : MonoBehaviour
 
                             player.inventory.Remove(ammo.type, 1);
                             Debug.Log($"Gun shot, remaining ammo: {ammo.amount}");
+
+                            OnShoot.Invoke();
                         }
                     }
                     break;

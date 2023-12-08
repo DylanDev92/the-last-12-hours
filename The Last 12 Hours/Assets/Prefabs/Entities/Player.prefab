@@ -84,10 +84,10 @@ MonoBehaviour:
     Pitch: 1.03
     Loop: 0
     Source: {fileID: 0}
-  - Name: Pistol-Gunshot
-    Clip: {fileID: 8300000, guid: 59474939c20d6d04a9b420cd627273d8, type: 3}
-    Volume: 0.15
-    Pitch: 1.03
+  - Name: Shoot
+    Clip: {fileID: 8300000, guid: 006c38fd70cae4b49a49a3d4a8c43ec1, type: 3}
+    Volume: 0.01
+    Pitch: 1.75
     Loop: 0
     Source: {fileID: 0}
   - Name: Shotgun-Shot
@@ -261,7 +261,7 @@ MonoBehaviour:
   - {x: 0.13925949, y: -0.4798763, z: 0}
   m_ShapePathHash: -1856811995
   m_Mesh: {fileID: 0}
-  m_InstanceId: 176220
+  m_InstanceId: 70208
   m_LocalBounds:
     m_Center: {x: 0.06812896, y: -0.072844446, z: 0}
     m_Extent: {x: 0.15115556, y: 0.40757143, z: 0}
